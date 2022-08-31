@@ -58,10 +58,6 @@
     width: 506px;
     margin-bottom: 20px;
   }
-
-  .home-content-container button {
-    width: 506px;
-  }
 }
 
 @media (min-width: 768px) {
