@@ -10,7 +10,6 @@
     "@types/jwt-decode": "^3.1.0",
     "@types/node": "^16.11.56",
     "@types/qs": "^6.9.7",
-    "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.27.2",
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.50"
   }
 }
