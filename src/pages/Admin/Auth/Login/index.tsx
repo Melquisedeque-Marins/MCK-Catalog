@@ -3,9 +3,11 @@ import ButtonIcon from 'components/ButtonIcon';
 import { useForm } from "react-hook-form";
 
 import './styles.css';
-import { getTokenData, requestBackendLogin, saveAuthData } from 'util/requests';
+import { requestBackendLogin } from 'util/requests';
 import { useContext, useState } from 'react';
 import { AuthContext } from 'AuthContext';
+import { saveAuthData } from 'util/storage';
+import { getTokenData } from 'util/auth';
 
 type FormData = {
   username : string;
