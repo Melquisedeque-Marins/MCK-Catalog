@@ -11,6 +11,7 @@ import './styles.css';
 
 const Catalog = () => {
     const [page, setPage] = useState<SpringPage<Product>>();
+    
     const [isLoading, setIsLoading ] = useState(false);
 
     useEffect(() => {
