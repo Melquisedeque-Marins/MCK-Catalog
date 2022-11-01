@@ -12,7 +12,6 @@ const Form = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Product>();
 
     const onSubmit = (formData: Product) => {
-
         const data = { ...formData,
             imgUrl: "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/9-big.jpg",
             categories: [ { id: 1, name:""}]}
@@ -26,7 +25,7 @@ const Form = () => {
 
         requestBackend(config)
             .then(response => {
-              console.log(response.data)
+                history.push("/admin/products");
             });
     };
 
