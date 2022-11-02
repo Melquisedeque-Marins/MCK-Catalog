@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
+import Select from 'react-select';
 import { Product } from 'types/products';
 import { setConstantValue } from 'typescript';
 import { requestBackend } from 'util/requests';
@@ -12,6 +13,12 @@ type UrlParams = {
 }
 
 const Form = () => {
+
+    const options = [
+        { value: 'chocolate', label: 'chocolate'},
+        { value: 'chocolate', label: 'chocolate'},
+        { value: 'chocolate', label: 'chocolate'}
+    ]
 
     const { productId } = useParams<UrlParams>();
 
@@ -82,6 +89,20 @@ const Form = () => {
                                     {errors.name?.message}
                                 </div>
                             </div>
+
+                            <div className="margin-botton-30">
+                                <Select
+                                    options={options}
+                                    classNamePrefix="product-crud-select" 
+                                />
+                            </div>
+
+
+
+
+
+
+
                             <div className="margin-botton-30">
                                 <input
                                     {...register("price", {
