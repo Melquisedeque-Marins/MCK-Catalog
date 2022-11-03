@@ -14,6 +14,10 @@
     margin-bottom: 30px;
 }
 
+.form-control {
+    background-color: #FFF;
+}
+
 .product-crud-inputs-container {
     margin-bottom: 30px;
 }
