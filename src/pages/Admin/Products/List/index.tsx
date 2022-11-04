@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from "axios";
+import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "types/products";
@@ -8,10 +9,16 @@ import ProductCrudCard from "../ProductCrudCard";
 
 import './styles.css';
 
+type ControlComponentsData = {
+    activePage: number;
+}
+
 
 const List = () => {
 
     const [page, setPage] = useState<SpringPage<Product>>();
+
+    const [ControlComponentsData, setControlComponentsData] = useState<ControlComponentsData>({activePage: 0})
 
     useEffect(() => {
         getProducts();
@@ -49,6 +56,7 @@ const List = () => {
             </div>
                 ))}
         </div>
+        <Pagination/>
         </div>
             )
     }
