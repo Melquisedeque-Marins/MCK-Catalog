@@ -1,6 +1,6 @@
 import PrivateRoute from "components/PrivateRoute/PrivateRoute";
 import Products from "pages/Admin/Products";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import './styles.css';
 import Users from "./Users";
