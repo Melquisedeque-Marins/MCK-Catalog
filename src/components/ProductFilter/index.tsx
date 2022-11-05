@@ -7,24 +7,35 @@ import { requestBackend } from 'util/requests';
 
 import './styles.css';
 
-type ProductFilterData = {
+export type ProductFilterData = {
     name: string;
-    category: Category;
+    category: Category | null;
 }
 
-const ProductFilter = () => {
+type Props = {
+    onSubmitFilter: (data: ProductFilterData) => void;
+}
 
-    const [selectcategories, setSelecCategories] = useState<Category[]>([]);
+    const ProductFilter = ({ onSubmitFilter } : Props ) => {
+
+    const [selectCategories, setSelecCategories] = useState<Category[]>([]);
 
     const onSubmit = (formData: ProductFilterData) =>{
-        console.log('ENVIOU', formData)
+        onSubmitFilter(formData);
     }
 
     const { 
         register,
         handleSubmit, 
+        setValue,
+        getValues,
         control 
     } = useForm<ProductFilterData>();
+
+    const handleFormClear = () => {
+        setValue('name', '');
+        setValue('category', null);
+    }
 
     useEffect(() => {
         requestBackend({url: '/categories'})
@@ -32,6 +43,17 @@ const ProductFilter = () => {
                 setSelecCategories(response.data.content);
             })
     }, []);
+
+    const handleChangeCategory = (value: Category) => {
+        setValue('category', value);
+
+        const obj : ProductFilterData= {
+            name: getValues('name'),
+            category: getValues('category')
+        };
+
+        onSubmitFilter(obj);
+    }
 
     return (
         <div className="base-card product-filter-container">
@@ -55,17 +77,20 @@ const ProductFilter = () => {
                         control={control}
                         render={({field}) => ( 
                             <Select {...field}
-                                options={selectcategories}
+                                options={selectCategories}
                                 isClearable
                                 placeholder="Categoria"
                                 classNamePrefix="product-filter-select" 
+
+                                onChange={value => handleChangeCategory(value as Category)}
+
                                 getOptionLabel={(category: Category) => category.name}
                                 getOptionValue={(category: Category) => String(category.id)}
                             />
                         )}
                     />
                     </div>
-                    <button className="btn btn-outline-secondary btn-product-filter-clear">LIMPAR <span className="btn-product-filter-word">FILTRO</span> </button>
+                    <button onClick={handleFormClear} className="btn btn-outline-secondary btn-product-filter-clear">LIMPAR <span className="btn-product-filter-word">FILTRO</span> </button>
                 </div>
             </form>
         </div>
